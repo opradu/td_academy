@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script
+            src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+            crossorigin="anonymous"></script>
+
+
+    <script>
+
+    </script>
+
+</head>
+<body>
+
+
+<div class="td-slide-1">
+    <div class=" td-wrap">
+        <img src="bs1.jpg" class="td-active"/>
+        <img src="bs2.jpg"/>
+        <img src="bs3.jpg"/>
+        <img src="bs4.jpg"/>
+    </div>
+</div>
+
+
+
+<div class="td-slide-2">
+    <div class=" td-wrap">
+        <img src="bs1.jpg" class="td-active"/>
+        <img src="bs2.jpg"/>
+
+    </div>
+</div>
+
+test
+
+
+
+
+
+<script>
+
+
+
+    function tdSlider(className, time) {
+        let curElement = jQuery(className + " .td-wrap img:first-child").next();
+
+
+
+
+
+        setInterval(function () {
+
+            jQuery(className + ' .td-wrap .td-active').removeClass('td-active');
+
+            curElement.addClass('td-active');
+
+            let nextElement = curElement.next();
+            curElement = nextElement;
+
+
+            if (nextElement.length === 0) {
+                console.log('test', nextElement);
+                curElement = jQuery(className + " .td-wrap img:first-child");
+            }
+
+
+            console.log("tick - " + className);
+
+
+        }, time)
+    }
+
+
+    tdSlider('.td-slide-1', 1000);
+    tdSlider('.td-slide-2', 4000);
+
+
+
+</script>
+
+<style>
+    .td-wrap {
+        position: relative;
+        width: 463px;
+        height: 616px;
+
+    }
+
+
+    .td-wrap img{
+
+        background-color: black;
+        color: white;
+        font-size: 50px;
+
+
+        position: absolute;
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out;
+
+    }
+
+    .td-wrap .td-active {
+        opacity: 1;
+    }
+
+</style>
+
+</body>
+</html>

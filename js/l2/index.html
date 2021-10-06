@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script
+            src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+            crossorigin="anonymous"></script>
+
+
+    <script>
+
+    </script>
+
+
+</head>
+<body>
+
+
+
+<br><br><br>
+<div class="td-wrap">
+
+    <div class="td-current-text td-text"></div>
+    <div class="td-next-text td-text"></div>
+</div>
+
+
+
+
+<script>
+
+
+
+(function () {
+
+    let myTexts = [
+        '0 Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium',
+        '1 Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit',
+        '2 Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequ',
+        '3 henderit qui in ea voluptate velit esse quam nihil molestiae consequatur sed quia non numquam'
+    ];
+
+
+
+    console.log(myTexts);
+
+
+
+    //jQuery('.td-wrap').text(myTexts[0]);
+
+
+
+    let lastText = myTexts[0];
+    let currentText = myTexts[1];
+
+
+
+    jQuery('.td-current-text').text(lastText);
+    jQuery('.td-next-text').text(currentText);
+    console.log(lastText);
+    console.log(currentText);
+
+
+    let currentIndex = 0;
+
+    console.log('------');
+    setInterval(function(){
+
+        jQuery('.td-text-animate').removeClass('td-text-animate');
+
+        setTimeout(function () {
+            jQuery('.td-text').addClass('td-text-animate');
+        }, 100)
+
+
+
+
+        // sectiunea cu textele
+        lastText = myTexts[currentIndex];
+
+        // reset the nextText var to 0 when we get at the end
+        if (currentIndex === myTexts.length - 1) {
+            currentText = myTexts[0];
+        } else {
+            currentText = myTexts[currentIndex + 1];
+        }
+
+        jQuery('.td-current-text').text(lastText);
+        jQuery('.td-next-text').text(currentText);
+
+        //console.log(jQuery('.td-next-text').height());
+
+        console.log(lastText);
+        console.log(currentText);
+        //jQuery('.td-wrap').text(myTexts[currentIndex]);
+
+
+
+        // sectiunea care reseteaza
+        // reset the currentIndex to 0 when we get at the end
+        if (currentIndex === myTexts.length - 1) {
+            currentIndex = 0;
+        } else {
+            currentIndex++;
+        }
+
+
+        console.log('------');
+    }, 2000)
+
+
+
+})();
+
+
+
+
+
+</script>
+
+<style>
+
+    .td-wrap {
+        width: 400px;
+        height: 36px;
+        overflow: hidden;
+    }
+
+    .td-text {
+        transform: translateY(0);
+
+
+    }
+
+
+    .td-text-animate {
+        transform: translateY(-100%);
+        transition: transform 0.5s ease;
+    }
+
+</style>
+
+</body>
+</html>
